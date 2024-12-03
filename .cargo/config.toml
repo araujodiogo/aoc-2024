@@ -1,0 +1,3 @@
+[alias]
+run-first-part = "test --test first_part"
+test-all = "test"
