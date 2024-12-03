@@ -1,5 +1,6 @@
 use std::fs::File;
 use std::io::{self, BufRead};
+use crate::days::one::models::{parse_line, Line};
 
 pub fn second_part() -> Result<u32, io::Error> {
     let file = File::open("src/days/one/input.txt")?;
@@ -9,10 +10,7 @@ pub fn second_part() -> Result<u32, io::Error> {
     let mut second_list: Vec<u32> = Vec::new();
 
     for line in reader.lines() {
-        let line = line?; // Unwrap the Result
-        let mut values = line.split_whitespace();
-        let first: u32 = values.next().unwrap().parse().unwrap();
-        let second: u32 = values.next().unwrap().parse().unwrap();
+        let Line {first, second} = parse_line(&line?);
 
         first_list.push(first);
         second_list.push(second);

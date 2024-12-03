@@ -1,28 +1,14 @@
 use std::fs::File;
 use std::io::{self, BufRead};
+use super::models::Line;
+use super::models::parse_line;
 
-struct Line {
-    first: u32,
-    second: u32,
-}
 fn binary_search_insert(list: &mut Vec<u32>, new_element: u32) {
     match list.binary_search(&new_element) {
         Ok(index) => list.insert(index, new_element),
         Err(index) => list.insert(index, new_element),
     }
 }
-
-fn parse_line(line: &str) -> Line {
-    let mut parts = line
-        .split_whitespace()
-        .map(|num| num.parse::<u32>().unwrap());
-
-    Line {
-        first: parts.next().unwrap(),
-        second: parts.next().unwrap(),
-    }
-}
-
 fn calculate_total_distance(first_list: Vec<u32>, second_list: Vec<u32>) -> u32 {
     let mut total_distance: u32 = 0;
     for (index, element) in first_list.iter().enumerate() {
